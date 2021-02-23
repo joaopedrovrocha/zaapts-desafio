@@ -9,7 +9,7 @@ class Auth {
         const token = req.headers['x-access-token']
 
         if (!token) {
-            return res.status(401).json({ success: false, error: 'No token provided.' })
+            return res.status(400).json({ success: false, error: 'No token provided.' })
         }
 
         let { JWT_SECRET } = process.env
@@ -21,17 +21,17 @@ class Auth {
             decoded = jwt.verify(token.toString(), JWT_SECRET);
 
         } catch (e) {
-            return res.status(500).json({ success: false, error: 'Token is invalid.' })
+            return res.status(400).json({ success: false, error: 'Token is invalid.' })
         }
 
         if (!decoded) {
-            return res.status(500).json({ success: false, error: 'Failed to authenticate token.' })
+            return res.status(401).json({ success: false, error: 'Failed to authenticate token.' })
         }
 
         const user = await User.findById((<any>decoded).id)
 
         if (!user) {
-            return res.status(500).json({ success: false, error: 'User not found to authenticate.' })
+            return res.status(401).json({ success: false, error: 'User not found to authenticate.' })
         }
 
         req.user = user.toJSON()
