@@ -1,8 +1,10 @@
+import 'module-alias/register';
+
 import express, { json } from 'express'
 import dotenv from 'dotenv'
 
 import Database from './database'
-import ApiRouter from '@routes/api'
+import ApiRouter from './routes/api'
 
 class Init {
 

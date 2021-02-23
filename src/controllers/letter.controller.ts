@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 
-import Letter from '@models/letter.model'
+import Letter from '../models/letter.model'
 
 class LetterController {
 

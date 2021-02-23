@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import LetterController from "@controllers/letter.controller";
-import AuthUtils from "@utils/auth.utils"
+import LetterController from "../controllers/letter.controller";
+import AuthUtils from "../utils/auth.utils"
 
 class LetterRoutes {
     static loadRoutes() {

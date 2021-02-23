@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
-import AuthRouter from '@routes/auth.routes'
-import LetterRoutes from '@routes/letter.routes'
+import AuthRouter from './auth.routes'
+import LetterRoutes from './letter.routes'
 
 class ApiRouter {
     static loadRoutes() {
