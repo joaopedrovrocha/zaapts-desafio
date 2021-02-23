@@ -15,7 +15,14 @@ class Auth {
         let { JWT_SECRET } = process.env
         JWT_SECRET = JWT_SECRET || 'SECRET'
 
-        const decoded = jwt.verify(token.toString(), JWT_SECRET);
+        let decoded
+
+        try {
+            decoded = jwt.verify(token.toString(), JWT_SECRET);
+
+        } catch (e) {
+            return res.status(500).json({ success: false, error: 'Token is invalid.' })
+        }
 
         if (!decoded) {
             return res.status(500).json({ success: false, error: 'Failed to authenticate token.' })
