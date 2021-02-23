@@ -45,19 +45,22 @@ class AuthController {
             return res.status(200).json({ success: true, user: userCreated.toJSON() })
 
         } catch (err) {
-            let error = ''
+            let error
+            let status
 
             switch (err.code) {
                 case 11000:
                     error = `Duplicate key error collection: ${username} has already been used`
+                    status = 400
                 break
 
                 default:
                     error = 'An unexpected error occurred when trying to create the user.'
+                    status = 500
                 break
             }
 
-            return res.status(400).json({ success: false, error: error })
+            return res.status(status).json({ success: false, error: error })
         }
     }
 
