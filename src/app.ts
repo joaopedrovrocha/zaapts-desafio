@@ -1,5 +1,3 @@
-import 'module-alias/register';
-
 import express, { json } from 'express'
 import dotenv from 'dotenv'
 
