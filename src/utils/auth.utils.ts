@@ -21,7 +21,7 @@ class Auth {
             return res.status(500).json({ success: false, error: 'Failed to authenticate token.' })
         }
 
-        const user = await User.findById(decoded.id)
+        const user = await User.findById((<any>decoded).id)
 
         if (!user) {
             return res.status(500).json({ success: false, error: 'User not found to authenticate.' })
